@@ -41,7 +41,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Use pre-built Docker image
-        run: |
-          docker pull nikolnela/hw5:latest
-          docker run nikolnela/hw5:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: nikolnela/hw5:latest
